@@ -1,3 +1,7 @@
+const user = require("../models/schemas/userSchema");
+const cart = require("../models/schemas/cartSchema");
+const category = require("../models/schemas/categorySchema");
+const product = require("../models/schemas/productSchema");
 const sequelize = require("../common/dbconnection");
 
 
