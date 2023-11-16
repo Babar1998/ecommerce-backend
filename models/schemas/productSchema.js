@@ -1,29 +1,31 @@
 const sequelize = require("../../common/dbconnection")
 const { DataTypes } = require("sequelize")
 
-const user = sequelize.define('user',{
-    userId: {
+const product = sequelize.define('product',{
+    productId: {
         primaryKey: true,
         autoIncrement: true,
         type: DataTypes.INTEGER,
     },
-    userName:{
+    productName:{
         type: DataTypes.STRING,
         allowNull: false,
     },
-    email: {
-        unique: true,
-        allowNull: false,
+    productDescription:{
         type: DataTypes.STRING,
-        validate: {isEmail: true},
+        allowNull: false,
     },
-    password: {
+    price:{
+        type: DataTypes.INTEGER,
         allowNull: false,
-        type: DataTypes.STRING,
-    }
+    },
+    inventory:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
 },{
     timestamps: true,
     paranoid: true,
 })
 
-module.exports = user;
+module.exports = product;
