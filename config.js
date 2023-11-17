@@ -8,5 +8,5 @@ module.exports={
         "dialect": "postgres",
     },
 
-    // "jwtSecret": process.env.jwtSecret || "secret",
+    "jwtSecret": process.env.jwtSecret || "secret",
 }
