@@ -33,7 +33,7 @@ module.exports = {
     login : async (req, res) => {
         const {email, password} = req.body
         let user = await models.user.findOne({where:{email:email}});
-        user = user.dataValues;
+        // user = user.dataValues;
         console.log(user);
         if(user && await bcrypt.compare(password, user.password)) {
             const Token = generateToken({id:user.id})
