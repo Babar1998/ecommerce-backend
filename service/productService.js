@@ -27,4 +27,17 @@ module.exports = {
     }
     return null;
     },
+
+    productById: async (productId) => {
+      try {
+        const productById = await models.product.findByPk(productId);
+        if (productById) {
+          return productById;
+        } else {
+          return "No product with this ID exists";
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
   };

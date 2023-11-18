@@ -55,4 +55,22 @@ async function deleteProductController(req, res, next) {
   }
 }
 
-module.exports = {productsController, addProductController, updatedProductController, deleteProductController};
+async function productByIdController (req, res, next){
+  try {
+    const {error, value} = productValidation.productById.validate(
+      {productId: req.params.id},
+      {
+        abortEarly: true,
+      }
+    );
+    if (error) {
+      return res.send(error.details.map((err) => err.message));
+    } else {
+      const productId = Number(value.productId);
+      const data = await productService.productById(productId);
+      res.send(data);
+    }
+  } catch (error) {}
+}
+
+module.exports = {productsController, addProductController, updatedProductController, deleteProductController, productByIdController};
