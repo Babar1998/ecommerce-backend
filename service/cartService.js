@@ -2,7 +2,7 @@ const {models} = require("../models");
 
 module.exports = {
     getCart: async () => {
-      const carts = await models.cart.findAll();
+      const carts = await models.cart.findAll({include: models.user});
       return carts;
     },
     addCart: async(data) => {
