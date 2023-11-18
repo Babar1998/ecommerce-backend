@@ -6,6 +6,7 @@ module.exports={
         productDescription: joi.string().required(),
         price: joi.number().required(),
         inventory: joi.number().required(),
+        categoryID: joi.number().required(),
     }),
     deleteProduct: joi.object().keys({
         productId: joi.number(),
