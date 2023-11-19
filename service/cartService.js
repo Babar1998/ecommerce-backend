@@ -46,7 +46,7 @@ module.exports = {
           // where: {
           //   productID,
           // cartID
-          // }
+          // },
           
           productID,
           cartID
