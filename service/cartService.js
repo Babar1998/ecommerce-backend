@@ -40,17 +40,26 @@ module.exports = {
       }
     },
 
-    deleteFromCart : async(productID, cartID) => {
-      try {
-        const deleteProduct = await models.product_cart.destroy({
-          productID,
-          cartID
-        })
-        return deleteProduct;
-      } catch (error) {
-        console.log(error);
-      }
-    },
+    deleteFromCart: async (productID) => {
+      const carts = await models.cart.find(productID);
+    if (carts) {
+        carts.destroy();
+        return "PRODUCT DELETED SUCCESSFULLY";
+    }
+    return null;
+    }, 
+
+    // deleteFromCart : async(productID, cartID) => {
+    //   try {
+    //     const deleteProduct = await models.product_cart.destroy({
+    //       productID,
+    //       cartID
+    //     })
+    //     return deleteProduct;
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // },
 
     cartById: async (cartId) => {
       try {
