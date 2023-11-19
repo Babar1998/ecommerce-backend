@@ -82,7 +82,7 @@ async function deleteFromCartController (req, res, next){
     } else {
       const {productID, cartID} = value;
       const deleted = await cartService.deleteFromCart(productID, cartID);
-      return res.send(deleted);
+      return res.send(deleted.toString());
     }
   } catch (error) {
     res.send(error);

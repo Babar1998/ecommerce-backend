@@ -43,13 +43,10 @@ module.exports = {
     deleteFromCart : async(productID, cartID) => {
       try {
         const deleteProduct = await models.product_cart.destroy({
-          // where: {
-          //   productID,
-          // cartID
-          // },
-          
-          productID,
+          where: {
+            productID,
           cartID
+          },
         })
         return deleteProduct;
       } catch (error) {
