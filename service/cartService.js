@@ -26,7 +26,7 @@ module.exports = {
         return "CART DELETED SUCCESSFULLY";
     }
     return null;
-    },
+    }, 
 
     addToCart : async(productID, cartID) => {
       try {
@@ -35,6 +35,18 @@ module.exports = {
           cartID
         })
         return newlyAdded;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    deleteFromCart : async(productID, cartID) => {
+      try {
+        const deleteProduct = await models.product_cart.destroy({
+          productID,
+          cartID
+        })
+        return deleteProduct;
       } catch (error) {
         console.log(error);
       }

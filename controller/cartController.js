@@ -72,6 +72,23 @@ async function addToCartController (req, res, next){
   }
 }
 
+async function deleteFromCartController (req, res, next){
+  try{
+    const {error, value} = cartValidation.deleteFromCart.validate(req.body, {
+      abortEarly:false,
+    });
+    if (error) {
+      return res.send(error.details.map((err) => err.message));
+    } else {
+      const {productID, cartID} = value;
+      const deleted = await cartService.deleteFromCart(productID, cartID);
+      return res.send(deleted);
+    }
+  } catch (error) {
+    res.send(error);
+  }
+}
+
 async function cartByIdController (req, res, next){
   try {
     const {error, value} = cartValidation.cartById.validate(
@@ -90,4 +107,5 @@ async function cartByIdController (req, res, next){
   } catch (error) {}
 }
 
-module.exports = {cartsController, addCartController, updatedCartController, deleteCartController, addToCartController, cartByIdController};
+module.exports = {cartsController, addCartController, updatedCartController, deleteCartController, addToCartController, cartByIdController, deleteFromCartController
+};
