@@ -81,7 +81,7 @@ async function deleteFromCartController (req, res, next){
       return res.send(error.details.map((err) => err.message));
     } else {
       const {productID, cartID} = value;
-      const deleted = await cartService.deleteFromCart(productID);
+      const deleted = await cartService.deleteFromCart(productID, cartID);
       return res.send(deleted);
     }
   } catch (error) {
