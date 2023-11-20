@@ -73,4 +73,22 @@ async function productByIdController (req, res, next){
   } catch (error) {}
 }
 
-module.exports = {productsController, addProductController, updatedProductController, deleteProductController, productByIdController};
+async function productByCatController (req, res, next){
+  try {
+    const {error, value} = productValidation.productByCategory.validate(
+      {categoryID: req.params.id},
+      {
+        abortEarly: true,
+      }
+    );
+    if (error) {
+      return res.send(error.details.map((err) => err.message));
+    } else {
+      const productCat = Number(value.categoryID);
+      const data = await productService.productByCategory(productCat);
+      res.send(data);
+    }
+  } catch (error) {}
+}
+
+module.exports = {productsController, addProductController, updatedProductController, deleteProductController, productByIdController, productByCatController};

@@ -21,4 +21,7 @@ module.exports={
     productById: joi.object().keys({
         productId: joi.number().required(),
     }),
+    productByCategory: joi.object().keys({
+        categoryID: joi.number().required(),
+    }),
 }

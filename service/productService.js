@@ -40,4 +40,17 @@ module.exports = {
         console.log(error);
       }
     },
+
+    productByCategory: async (categoryID) => {
+      try {
+        const productByCat = await models.product.findAll({where: {categoryID: categoryID}});
+        if (productByCat) {
+          return productByCat;
+        } else {
+          return "No category with this ID exists";
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
   };
