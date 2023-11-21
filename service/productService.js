@@ -1,4 +1,5 @@
 const {models} = require("../models");
+const allProducts = require("./product.json")
 
 module.exports = {
     getProduct: async () => {
@@ -6,7 +7,8 @@ module.exports = {
       return products;
     },
     addProduct: async(data) => {
-      const products = await models.product.create(data);
+      const products = await models.product.bulkCreate(allProducts);
+      // const products = await models.product.create(data);
       console.log(products);
       return products;
     },
